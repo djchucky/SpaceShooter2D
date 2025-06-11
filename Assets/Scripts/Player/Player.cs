@@ -152,14 +152,14 @@ public class Player : MonoBehaviour
 
         transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, -3.8f, 0), 0);
 
-        if (transform.position.x > 15f)
+        if (transform.position.x > 10.5f)
         {
-            transform.position = new Vector3(-15f, transform.position.y, 0);
+            transform.position = new Vector3(-10.5f, transform.position.y, 0);
         }
 
-        else if (transform.position.x < -15f)
+        else if (transform.position.x < -10.5f)
         {
-            transform.position = new Vector3(15f, transform.position.y, 0);
+            transform.position = new Vector3(10.5f, transform.position.y, 0);
         }
 
         void Sprint()
