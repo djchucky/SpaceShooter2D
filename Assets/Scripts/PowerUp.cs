@@ -60,7 +60,7 @@ public class PowerUp : MonoBehaviour
                         break;
                 }
 
-                AudioSource.PlayClipAtPoint(_pickupClip, Camera.main.transform.position, 1f);
+                AudioSource.PlayClipAtPoint(_pickupClip, Camera.main.transform.position, 1f); // Audiosource.PLay()
             }
 
             Destroy(this.gameObject);

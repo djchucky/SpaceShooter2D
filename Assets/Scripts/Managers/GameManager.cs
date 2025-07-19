@@ -15,6 +15,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private AudioClip _bossClip;
     [SerializeField] private AudioSource _audioSource;
 
+    Enemy[] currentStandardEnemies;
+    EnemyRed[] currentRedEnemies;
+
 
     [Header("Wave System Settings")]
     private int _currentWave = 0;
@@ -118,8 +121,8 @@ public class GameManager : MonoBehaviour
     {
         while (!_isGameOver)
         {
-            Enemy[] currentStandardEnemies = FindObjectsOfType<Enemy>();
-            EnemyRed[] currentRedEnemies = FindObjectsOfType<EnemyRed>();
+            currentStandardEnemies = FindObjectsOfType<Enemy>();
+            currentRedEnemies = FindObjectsOfType<EnemyRed>();
 
             if (currentStandardEnemies.Length == 0 && currentRedEnemies.Length == 0)
             {

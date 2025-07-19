@@ -9,12 +9,12 @@ public class Enemy : MonoBehaviour
     private Animator _animator;
     private AudioSource _audioSource;
 
-    private Vector2 playerPos;
-    private Vector3 forward;
-    private Vector3 toOther;
+    private Vector2 _playerPos;
+    private Vector3 _forward;
+    private Vector3 _toOther;
 
     private float _distanceToPlayer;
-    private int dodgeDirection = 0;
+    private int _dodgeDirection = 0;
 
     private float _lastAttackTime = -Mathf.Infinity;
     private float _attackCoolDown = 1f;
@@ -132,8 +132,8 @@ public class Enemy : MonoBehaviour
         //Calculate Distance to Player (For Ram Attack)
         if (_player != null)
         {
-        playerPos = _player.transform.position;
-        _distanceToPlayer = Vector2.Distance(playerPos, transform.position);    
+        _playerPos = _player.transform.position;
+        _distanceToPlayer = Vector2.Distance(_playerPos, transform.position);    
         }
 
         //if enemy is close to player
@@ -145,7 +145,7 @@ public class Enemy : MonoBehaviour
 
         if (_isChasing == true && !_isDead)
         {
-            AttackRamPlayer(playerPos);
+            AttackRamPlayer(_playerPos);
         }
 
         else if (!_isDead)
@@ -289,9 +289,9 @@ public class Enemy : MonoBehaviour
 
     private void AttackPlayerFromBehind()
     {
-        forward = Vector3.down;
-        toOther = Vector3.Normalize(_player.transform.position - transform.position);
-        if (Vector3.Dot(forward, toOther) < -0.7f) //Calculate if Player is behind me
+        _forward = Vector3.down;
+        _toOther = Vector3.Normalize(_player.transform.position - transform.position);
+        if (Vector3.Dot(_forward, _toOther) < -0.7f) //Calculate if Player is behind me
         {
             StartCoroutine(FireBackRoutine());
         }
@@ -333,16 +333,16 @@ public class Enemy : MonoBehaviour
             {
                 if (!laser.IsEnemyLaser)
                 {
-                    if (dodgeDirection == 0)
+                    if (_dodgeDirection == 0)
                     {
-                        dodgeDirection = Random.Range(-1, 2);
-                        if (dodgeDirection == 0)
+                        _dodgeDirection = Random.Range(-1, 2);
+                        if (_dodgeDirection == 0)
                         {
-                            dodgeDirection = 1;
+                            _dodgeDirection = 1;
                         }
                     }         
                     Debug.Log("Laser detected");
-                    transform.Translate((dodgeDirection * Vector3.right) * _moveSpeed * Time.deltaTime);
+                    transform.Translate((_dodgeDirection * Vector3.right) * _moveSpeed * Time.deltaTime);
                 }
             }
         }
